@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141117080637) do
+ActiveRecord::Schema.define(version: 20141117082607) do
 
   create_table "activities", force: true do |t|
     t.integer  "user_id"
@@ -25,10 +25,50 @@ ActiveRecord::Schema.define(version: 20141117080637) do
     t.datetime "updated_at"
   end
 
+  create_table "comments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "entry_id"
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "feeds", force: true do |t|
+    t.string   "title"
+    t.string   "url"
+    t.string   "feed_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "follows", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "followed_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subscriptions", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "feed_id"
+    t.datetime "created_at"
+    t.datetime "udpated_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
     t.string   "bio"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "votes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "entry_id"
+    t.string   "type"
+    t.integer  "rating"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
